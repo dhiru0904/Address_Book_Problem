@@ -1,5 +1,4 @@
 package com.addressbookproblem;
-
 import java.util.Scanner;
 public class AddressBookSystemMain {
     /*
@@ -17,61 +16,88 @@ public class AddressBookSystemMain {
         /*
         Doing the operations in address book.
          */
-        Scanner scan = new Scanner(System.in);
+        addressBookOperation();
+    }
+    public static void addressBookOperation() {
+        Scanner scanner = new Scanner(System.in);
         ContactOperations addressBook = new ContactOperations();
         boolean flag = true;
         while(flag) {
+            System.out.println();
             System.out.println("1.Add Contact");
-            System.out.println("2.Edit Contact");
-            System.out.println("3.Delete Contact");
-            System.out.println("4.Exit");
+            System.out.println("2.Add Multiple Contact");
+            System.out.println("3.Edit Contact");
+            System.out.println("4.Delete Contact");
+            System.out.println("5.Show Contacts");
+            System.out.println("6.Exit");
+            System.out.println();
             System.out.println("Enter Choice: ");
-            int option = scan.nextInt();
+            String option = scanner.next();
             switch (option) {
-                case 1:
+                case "1":
                     addressBook.addContact();
-                    addressBook.printContact();
                     break;
-                    case 2:
-                    if (addressBook.checkList() == true) {
-                        System.out.println("Enter the Person First name to edit details: ");
-                        String person_name = scan.next();
-                        boolean b = addressBook.editContact(person_name);
-                        if (b == true)
+                case "2":
+                    System.out.println("1.You want to add multiple contacts from console");
+                    System.out.println("You want to add multiple contacts from the contact cards");
+                    System.out.println("What you want?");
+                    System.out.println("Enter your choice.");
+                    int choice = scanner.nextInt();
+                    if (choice == 1)
+                    {
+                    System.out.println("Enter how many contacts you want to add at a time.");
+                        int numOfContacts = scanner.nextInt();
+                        for (int i = 1; i <= numOfContacts; i++)
                         {
-                            System.out.println("Details Updated");
+                            addressBook.addContact();
+                            System.out.println(i+" Contact added successfully");
                         }
-                        else
-                        {
+                    }
+                    else if (choice == 2)
+                    {
+                        addressBook.sharedContactCards();
+                        System.out.println("Contact cards added successfully");
+                    }
+                    else
+                        System.out.println("Enter valid choice");
+                    break;
+                    case "3":
+                    if (addressBook.checkList())
+                    {
+                        boolean b = addressBook.editContact();
+                        if (b == true) {
+                            System.out.println("Details Updated");
+                        } else {
                             System.out.println("Contact Not Found");
                         }
                     }
                     else
                         System.out.println("Nothing in the contact list.\nPlease create one");
                     break;
-                    case 3:
-                    if (addressBook.checkList() == true) {
-                        System.out.println("Enter the Contact to be deleted:");
-                        String firstName = scan.next();
-                        boolean listDeleted = addressBook.deleteContact(firstName);
-                        if (listDeleted)
-                        {
+                    case "4":
+                        if (addressBook.checkList())
+                    {
+                        boolean listDeleted = addressBook.deleteContact();
+                        if (listDeleted) {
                             System.out.println("Details Deleted");
-                        }
-                        else
-                        {
+                        } else {
                             System.out.println("Cannot be Deleted");
                         }
                     }
                     else
                         System.out.println("Nothing in the contact list.\nPlease create one");
                     break;
-                    case 4:
-                    addressBook.printContact();
-                    flag = false;
-                    break;
+                    case "5":
+                        addressBook.printContact();
+                        break;
+                    case "6":
+                        flag = false;
+                        break;
+                        default:
+                            System.out.println("Enter a valid input.");
+                            break;
             }
         }
-        scan.close();
+        scanner.close();
     }
 }

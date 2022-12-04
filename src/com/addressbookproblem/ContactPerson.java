@@ -1,7 +1,5 @@
   /*Encapsulated class*/
 package com.addressbookproblem;
-  import java.util.Iterator;
-  import java.util.List;
   public class ContactPerson {
       /*
       Declaring variables for Address Book System
@@ -14,7 +12,10 @@ package com.addressbookproblem;
       private String zip;
       private String phoneNumber;
       private String email;
-      //Creating one default constructor
+
+      /*
+      Creating one default constructor
+       */
       public ContactPerson() {
       }
       /*
@@ -78,18 +79,5 @@ package com.addressbookproblem;
                   ", phoneNumber='" + phoneNumber + '\'' +
                   ", email='" + email + '\'' +
                   '}';
-      }
-      /*
-      Printing contactDetails
-       */
-      public void printContact(List<ContactPerson> list) {
-          if (!list.isEmpty()) {
-              System.out.println("Contact details are below.....\n");
-              Iterator it = list.iterator();
-              while (it.hasNext()) {
-                  System.out.println(it.next());
-              }
-          } else
-              System.out.println("Contact list is empty.");
       }
   }
