@@ -3,8 +3,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 public class ContactOperations {
-    static Scanner scan = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
     private static ArrayList<ContactPerson> contactDetails = new ArrayList<>();
+    /*
+    Constructor
+     */
+    public ContactOperations() {
+        this.contactDetails = new ArrayList<>();
+    }
     /*
     For adding contact
      */
@@ -12,21 +18,21 @@ public class ContactOperations {
     {
         System.out.println("Enter the contact details.............");
         System.out.println("Enter the First name:");
-        String firstName = scan.nextLine();
+        String firstName = scanner.nextLine();
         System.out.println("Enter the Last name:");
-        String lastName = scan.nextLine();
+        String lastName = scanner.nextLine();
         System.out.println("Enter the Address:");
-        String address = scan.nextLine();
+        String address = scanner.nextLine();
         System.out.println("Enter the City:");
-        String city = scan.nextLine();
+        String city = scanner.nextLine();
         System.out.println("Enter the State:");
-        String state = scan.nextLine();
+        String state = scanner.nextLine();
         System.out.println("Enter the Zip code:");
-        String zip = scan.nextLine();
+        String zip = scanner.nextLine();
         System.out.println("Enter the Phone no:");
-        String phoneNumber = scan.nextLine();
+        String phoneNumber = scanner.nextLine();
         System.out.println("Enter the Email:");
-        String email = scan.nextLine();
+        String email = scanner.nextLine();
         /*
         Calling Contact person class
          */
@@ -57,7 +63,7 @@ public class ContactOperations {
         if (checkList())
         {
             System.out.println("Enter the Person First name to edit details: ");
-            String name = scan.next();
+            String name = scanner.next();
             for (ContactPerson contact : contactDetails) {
                 if (contact.getFirstName().equalsIgnoreCase(name)) {
                     System.out.println("Enter the detail which needs to be updated:\nChoose the option.");
@@ -69,46 +75,46 @@ public class ContactOperations {
                     System.out.println("6. Edit Zip");
                     System.out.println("7. Edit Phone Number");
                     System.out.println("8. Edit Email");
-                    int choice = scan.nextInt();
+                    int choice = scanner.nextInt();
                      switch (choice) {
                             case 1:
                             System.out.println("Enter First Name: ");
-                            String firstName = scan.next();
+                            String firstName = scanner.next();
                             contact.setFirstName(firstName);
                             break;
                             case 2:
                             System.out.println("Enter Last name: ");
-                            String lastName = scan.next();
+                            String lastName = scanner.next();
                             contact.setLastName(lastName);
                             break;
                             case 3:
                             System.out.println("Enter Address: ");
-                            String address = scan.next();
+                            String address = scanner.next();
                             contact.setAddress(address);
                             break;
                             case 4:
                             System.out.println("Enter City: ");
-                            String city = scan.next();
+                            String city = scanner.next();
                             contact.setCity(city);
                             break;
                             case 5:
                             System.out.println("Enter State: ");
-                            String state = scan.next();
+                            String state = scanner.next();
                             contact.setState(state);
                             break;
                             case 6:
                             System.out.println("Enter Zip Code: ");
-                            String zip = scan.next();
+                            String zip = scanner.next();
                             contact.setZip(zip);
                             break;
                             case 7:
                             System.out.println("Enter Phone Number:");
-                            String phoneNumber = scan.next();
+                            String phoneNumber = scanner.next();
                             contact.setPhoneNumber(phoneNumber);
                             break;
                             case 8:
                             System.out.println("Enter Email: ");
-                            String email = scan.next();
+                            String email = scanner.next();
                             contact.setEmail(email);
                             break;
                     }
@@ -127,7 +133,7 @@ public class ContactOperations {
         if (checkList())
         {
             System.out.println("Enter the Contact to be deleted:");
-            String name = scan.next();
+            String name = scanner.next();
             for (ContactPerson contact : contactDetails) {
                 if (contact.getFirstName().equalsIgnoreCase(name)) {
                     contactDetails.remove(contact);
@@ -164,4 +170,12 @@ public class ContactOperations {
         else
             System.out.println("Contact list is empty.");
     }
-}
+    /*
+    Creating a To string method
+     */
+    @Override
+    public String toString() {
+           return "ContactOperations{" +
+                "contactDetails=" + contactDetails +
+                '}';
+}}
